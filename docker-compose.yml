@@ -1,15 +1,26 @@
 version: "3.9"
 services:
+  db:
+    image: postgres:13
+    environment:
+      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    ports:
+      - "5432:5432"
+    networks:
+      - compliyee-network
+    volumes:
+      - postgres:/var/lib/postgresql/data/
   web:
     build: backend
     ports:
       - "8000:8000"
     command: uvicorn core.asgi:app --host 0.0.0.0 --port 8000
-  db:
-    image: postgres:13
-    volumes:
-      - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+    depends_on:
+      - db
+    networks:
+      - compliyee-network
+    links: [db:db]
+networks:
+  compliyee-network:
 volumes:
-  postgres_data:
+  postgres:

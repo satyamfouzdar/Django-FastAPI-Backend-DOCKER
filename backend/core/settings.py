@@ -37,7 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'accounts'
+    # Custom Apps
+    'accounts',
+    # Third-Party Apps
+    "phonenumber_field",
 ]
 
 MIDDLEWARE = [
@@ -130,3 +133,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 API_V1_STR: str = "/api/v1"
 WSGI_APP_URL: str = "/web"
 PROJECT_NAME  =  "Compliyee API"
+
+AUTH_USER_MODEL = 'accounts.User'

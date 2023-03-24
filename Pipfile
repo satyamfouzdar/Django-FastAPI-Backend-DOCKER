@@ -9,6 +9,9 @@ uvicorn = "*"
 fastapi = "*"
 psycopg2-binary = "*"
 python-dotenv = "*"
+phonenumbers = "*"
+django-phonenumber-field = {extras = ["phonenumberslite"], version = "*"}
+pillow = "*"
 
 [dev-packages]
 

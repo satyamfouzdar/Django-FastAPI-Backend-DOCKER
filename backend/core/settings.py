@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Custom Apps
     'accounts',
+    'flinks',
     # Third-Party Apps
     "phonenumber_field",
 ]

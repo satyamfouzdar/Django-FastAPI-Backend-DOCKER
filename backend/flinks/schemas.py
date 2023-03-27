@@ -9,3 +9,13 @@ class Country(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class Institution(BaseModel):
+    """
+    Schema for Institution
+    """
+    name: str
+
+    class Config:
+        orm_mode = True

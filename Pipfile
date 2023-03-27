@@ -12,6 +12,10 @@ python-dotenv = "*"
 phonenumbers = "*"
 django-phonenumber-field = {extras = ["phonenumberslite"], version = "*"}
 pillow = "*"
+passlib = "*"
+pyjwt = "*"
+python-jose = "*"
+python-multipart = "*"
 
 [dev-packages]
 

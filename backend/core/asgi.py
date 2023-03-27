@@ -9,6 +9,7 @@ from fastapi.middleware.wsgi import WSGIMiddleware
 from fastapi.staticfiles import StaticFiles
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'core.settings')
+os.environ["DJANGO_ALLOW_ASYNC_UNSAFE"] = "true"
 
 apps.populate(settings.INSTALLED_APPS)
 

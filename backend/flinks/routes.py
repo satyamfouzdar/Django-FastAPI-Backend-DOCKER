@@ -17,11 +17,11 @@ async def get_active_countries():
     return list(all_countries)
 
 
-# TODO: Route to View all financial institutions from flinks api
-@router.get('/institutions', response_model=List[schemas.Institution])
-async def get_all_institutions():
+# TODO: Route to update institutions table.
+@router.get('/update-institutions')
+async def update_db_institutions():
     """
-    Method to get all institutions from flinks api.
+    Method to update the db institutions
     """
     mode = "sandbox"
     customerId = "3780d239-9630-4897-8d7c-142cae653000"
@@ -36,10 +36,21 @@ async def get_all_institutions():
     institutions = []
 
     for institution in data['Data']:
-        institution_dict = {}
-        institution_dict['name'] = institution['Localizations'][0]['Name']
-        institutions.append(institution_dict)
+        country = models.Country.objects.get(shortcode=institution['Country'])
+        institution, created = models.Institution.objects.get_or_create(
+            name=institution['Localizations'][0]['Name'],
+            country=country,
+            url=institution['Localizations'][0]['Urls'][0]['Url'])
 
-    return institutions
+    return {"message": "Updated Sucessfully"}
+
+
+
+@router.get('/institutions', response_model=List[schemas.Institution])
+async def get_all_institutions():
+    """
+    Method to get all institutions from flinks api.
+    """
+    pass
 # TODO: Route to post login credentials for specific financial institution and get the request_id for user
 # TODO: Route to Get all accounts for that user using the request id
